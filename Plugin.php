@@ -19,7 +19,7 @@ class Cuu_Plugin implements Typecho_Plugin_Interface
      */
     public static function activate()
     {
-        Typecho_Plugin::factory('Widget_Feedback')->finishComment_15 = array('Cuu_Plugin', 'finishComment'); // 前台提交评论完成接口
+        Typecho_Plugin::factory('Widget_Feedback')->finishComment = [__CLASS__, 'finishComment']; // 前台提交评论完成接口
     }
 
     /**
