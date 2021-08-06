@@ -4,7 +4,7 @@
  * Cuu全名Comment Url Update 当游客评论时，根据游客ip与邮箱筛选出他的历史评论，然后把历史评论里面的网站同步成最新的
  * @package Cuu
  * @author 泽泽社长
- * @version 1.0.0
+ * @version 1.0.1
  * @link http://zezeshe.com
  */
 
@@ -19,7 +19,7 @@ class Cuu_Plugin implements Typecho_Plugin_Interface
      */
     public static function activate()
     {
-        Typecho_Plugin::factory('Widget_Feedback')->finishComment = [__CLASS__, 'finishComment']; // 前台提交评论完成接口
+        Typecho_Plugin::factory('Widget_Feedback')->finishComment_15 = array('Cuu_Plugin', 'finishComment'); // 前台提交评论完成接口
     }
 
     /**
@@ -72,9 +72,7 @@ class Cuu_Plugin implements Typecho_Plugin_Interface
         $db = Typecho_Db::get();//连接数据库
         
         $update=$db->update('table.comments')->rows(array('url'=>$comment->url))
-        ->where ('table.comments.ip=?',$comment->mail)
-        ->where ('table.comments.mail=?',$comment->ip);
-        
+        ->where ('ip =? and mail =?',$comment->ip,$comment->mail);
         $updateRows= $db->query($update);//执行更新操作
         }
 
