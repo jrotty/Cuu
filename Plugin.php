@@ -4,7 +4,7 @@
  * @package Cuu
  * @author 泽泽社长
  * @version 1.1.0
- * @link http://zezeshe.com
+ * @link http://blog.zezeshe.com
  */
 
 
